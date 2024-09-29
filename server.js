@@ -36,8 +36,10 @@ io.on('connection', (socket) => {
         console.log('Mensagem recebida:', msg); // Adicione este log
         if (!users[socket.id]) {
             users[socket.id] = msg;
+            console.log('Mensagem:', msg); // Adicione este log
             io.emit('message', `${msg} entrou no chat.`);
         } else {
+            console.log('Mensagem2:', msg); // Adicione este log
             io.emit('message', `${users[socket.id]}: ${msg}`);
         }
     });
