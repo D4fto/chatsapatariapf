@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
+const {connection} = require('/mysql/connection')
 
 const app = express();
 const server = http.createServer(app);
@@ -33,15 +34,22 @@ io.on('connection', (socket) => {
     });
     // Quando o usuário envia uma mensagem
     socket.on('message', (msg) => {
-        console.log('Mensagem recebida:', msg); // Adicione este log
-        if (!users[socket.id]) {
-            users[socket.id] = msg;
-            console.log('Mensagem:', msg); // Adicione este log
-            io.emit('message', `${msg} entrou no chat.`);
-        } else {
-            console.log('Mensagem2:', msg); // Adicione este log
-            io.emit('message', `${users[socket.id]}: ${msg}`);
-        }
+        console.log('Mensagem recebida:', msg);
+        message = JSON.parse(msg)
+        connection.excute('SELECT Funcionario.*, Nome_Pessoa, telefone_Pessoa FROM Funcionario, Pessoa WHERE Pessoa_cpf_Pessoa = ? and Pessoa_cpf_Pessoa = cpf_Pessoa',[message.cpf],(err,result)=>{
+            if(err===null){
+                if (!users[socket.id]) {
+                    users[socket.id] = message.cpf;
+                    console.log('Mensagem:', message.msg); // Adicione este log
+                }
+                io.emit('message', JSON.stringify({
+                    msg: message.msg,
+                    nome: result.Nome_Pessoa,
+                    cpf: message.cpf
+                }));
+            }
+        })
+
     });
 
     socket.on('disconnect', () => {
