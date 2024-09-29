@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    
+    <h1>Chat</h1>
+    
+    <!-- Input para nome de usuário -->
+    <input id="username" placeholder="Seu nome">
+    <button id="joinBtn">Entrar no chat</button>
+    
+    <!-- Área do chat -->
+    <div id="chat"></div>
+    
+    <!-- Input para mensagem e botão de envio -->
+    <input id="messageInput" placeholder="Escreva uma mensagem" disabled>
+    <button id="sendBtn" disabled>Enviar</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Quando o botão 'Entrar no chat' é clicado
+        document.getElementById('joinBtn').onclick = () => {
+            const username = document.getElementById('username').value;
+            if (username) {
+                socket.emit('join', username); // Envia o nome de usuário ao servidor
+                document.getElementById('username').disabled = true;
+                document.getElementById('joinBtn').disabled = true;
+                document.getElementById('messageInput').disabled = false; // Habilita o campo de mensagem
+                document.getElementById('sendBtn').disabled = false;     // Habilita o botão de enviar
+            } else {
+                alert('Digite um nome de usuário');
+            }
+        };
+
+        // Quando o botão 'Enviar' é clicado
+        document.getElementById('sendBtn').onclick = () => {
+            const message = document.getElementById('messageInput').value;
+            if (message) {
+                socket.emit('message', message); // Envia a mensagem ao servidor
+                document.getElementById('messageInput').value = ''; // Limpa o campo de mensagem
+            } else {
+                alert('Digite uma mensagem');
+            }
+        };
+
+        // Recebe mensagens do servidor
+        socket.on('message', (msg) => {
+            const chat = document.getElementById('chat');
+            chat.innerHTML += `<p>${msg}</p>`;
+        });
+    </script>
+</body>
+</html>
