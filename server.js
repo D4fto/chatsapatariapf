@@ -5,6 +5,4 @@ const cors = require('cors');
 
 const app = express();
 
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
-});
+app.listen(process.env.PORT || 8080); 
