@@ -36,15 +36,9 @@ io.on('connection', (socket) => {
         console.log('Mensagem recebida:', msg); // Adicione este log
         if (!users[socket.id]) {
             users[socket.id] = msg;
-            io.emit('message', JSON.stringify({
-                msg: `${msg} entrou no chat.`,
-                user: 'servidor'
-            }));
+            io.emit('message', `${msg} entrou no chat.`);
         } else {
-            io.emit('message', JSON.stringify({
-                msg: msg,
-                user: users[socket.id]
-            }));
+            io.emit('message', `${users[socket.id]}: ${msg}`);
         }
     });
 
