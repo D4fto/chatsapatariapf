@@ -24,10 +24,16 @@ const users = {}; // Para armazenar os usuários
 
 io.on('connection', (socket) => {
     console.log('Usuário conectado:', socket.id);
+    socket.on('connect', () => {
+        console.log('Conectado ao servidor');
+    });
 
+    socket.on('connect_error', (err) => {
+        console.log('Erro de conexão:', err);
+    });
     // Quando o usuário envia uma mensagem
     socket.on('message', (msg) => {
-        // Se não houver nome do usuário, definir a primeira mensagem como nome de usuário
+        console.log('Mensagem recebida:', msg); // Adicione este log
         if (!users[socket.id]) {
             users[socket.id] = msg;
             io.emit('message', `${msg} entrou no chat.`);
