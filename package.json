@@ -10,8 +10,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "argon2": "^0.41.1",
     "chatsapatariapf": "file:",
     "express": "^4.21.0",
+    "mysql2": "^3.11.3",
     "socket.io": "^4.8.0"
   }
 }
