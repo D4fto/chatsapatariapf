@@ -45,7 +45,8 @@ io.on('connection', (socket) => {
                 io.emit('message', JSON.stringify({
                     msg: message.msg,
                     nome: result[0].Nome_Pessoa,
-                    cpf: message.cpf
+                    cpf: message.cpf,
+                    esuporte: result[0].Cargo_id_Cargo==9
                 }));
             }
         })
