@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 app.use(cors({
     origin: 'https://sapatariapf.onrender.com',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST'], 
     allowedHeaders: ['Content-Type']
 }));
 
