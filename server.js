@@ -7,21 +7,21 @@ const {connection} = require('./mysql/connection')
 const app = express();
 const server = http.createServer(app);
 
-// Habilitar CORSk
+
 app.use(cors({
-    origin: 'https://sapatariapf.onrender.com', // Permite apenas requisições de pipoca.co
+    origin: 'https://sapatariapf.onrender.com',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
 
 const io = new Server(server, {
     cors: {
-        origin: "https://sapatariapf.onrender.com", // O domínio que pode se conectar via WebSocket
+        origin: "https://sapatariapf.onrender.com", 
         methods: ["GET", "POST"]
     }
 });
 
-const users = {}; // Para armazenar os usuários
+const users = {}; 
 
 io.on('connection', (socket) => {
     console.log('Usuário conectado:', socket.id);
@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
     socket.on('connect_error', (err) => {
         console.log('Erro de conexão:', err);
     });
-    // Quando o usuário envia uma mensagem
+    
     socket.on('message', (msg) => {
         console.log('Mensagem recebida:', msg);
         message = JSON.parse(msg)
@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
             if(err===null){
                 if (!users[socket.id]) {
                     users[socket.id] = message.cpf;
-                    console.log('Mensagem:', message.msg); // Adicione este log
+                    console.log('Mensagem:', message.msg); 
                 }
                 io.emit('message', JSON.stringify({
                     msg: message.msg,
