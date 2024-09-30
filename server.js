@@ -7,7 +7,7 @@ const {connection} = require('./mysql/connection')
 const app = express();
 const server = http.createServer(app);
 
-// Habilitar CORS
+// Habilitar CORSk
 app.use(cors({
     origin: 'https://sapatariapf.onrender.com', // Permite apenas requisições de pipoca.com
     methods: ['GET', 'POST'],
