@@ -9,7 +9,7 @@ const server = http.createServer(app);
 
 // Habilitar CORSk
 app.use(cors({
-    origin: 'https://sapatariapf.onrender.com', // Permite apenas requisições de pipoca.com
+    origin: 'https://sapatariapf.onrender.com', // Permite apenas requisições de pipoca.co
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
