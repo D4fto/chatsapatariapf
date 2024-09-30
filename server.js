@@ -52,7 +52,7 @@ io.on('connection', (socket) => {
             }
         })
 
-    });
+    }); 
 
     socket.on('disconnect', () => {
         if (users[socket.id]) {
