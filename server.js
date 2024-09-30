@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
                     msg: message.msg,
                     nome: result[0].Nome_Pessoa,
                     cpf: message.cpf,
-                    esuporte: result[0].Cargo_id_Cargo==9
+                    esuporte: result[0].Cargo_id_Cargo
                 }));
             }
         })
