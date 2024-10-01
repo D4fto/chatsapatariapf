@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
         message = JSON.parse(msg)
         connection.execute('SELECT Funcionario.*, Nome_Pessoa, telefone_Pessoa FROM Funcionario, Pessoa WHERE Pessoa_cpf_Pessoa = ? and Pessoa_cpf_Pessoa = cpf_Pessoa',[message.cpf],(err,result)=>{
             if(err===null){
-                if (!users[socket.id]) {
+                if (!users[socket.id]) { 
                     users[socket.id] = message.cpf; 
                     console.log('Mensagem:', message.msg); 
                 }
