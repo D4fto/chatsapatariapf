@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
         console.log('Erro de conexão:', err);
     });
     
-    socket.on('message', (msg) => {
+    socket.on('message', (msg) => { 
         console.log('Mensagem recebida:', msg);
         message = JSON.parse(msg)
         connection.execute('SELECT Funcionario.*, Nome_Pessoa, telefone_Pessoa FROM Funcionario, Pessoa WHERE Pessoa_cpf_Pessoa = ? and Pessoa_cpf_Pessoa = cpf_Pessoa',[message.cpf],(err,result)=>{
