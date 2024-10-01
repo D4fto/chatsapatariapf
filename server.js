@@ -8,6 +8,7 @@ const app = express();
 const server = http.createServer(app);
 
 
+
 app.use(cors({
     origin: 'https://sapatariapf.onrender.com',
     methods: ['GET', 'POST'], 
