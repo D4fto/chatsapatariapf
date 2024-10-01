@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
         connection.execute('SELECT Funcionario.*, Nome_Pessoa, telefone_Pessoa FROM Funcionario, Pessoa WHERE Pessoa_cpf_Pessoa = ? and Pessoa_cpf_Pessoa = cpf_Pessoa',[message.cpf],(err,result)=>{
             if(err===null){
                 if (!users[socket.id]) {
-                    users[socket.id] = message.cpf;
+                    users[socket.id] = message.cpf; 
                     console.log('Mensagem:', message.msg); 
                 }
                 connection.execute('INSERT INTO `sapatariapf`.`Mensagem`(`TXT_Mensagem`,`Funcionario_Pessoa_cpf_Pessoa`)VALUES(?,?);',[message.msg,message.cpf])
