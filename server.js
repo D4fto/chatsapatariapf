@@ -43,7 +43,10 @@ io.on('connection', (socket) => {
                     users[socket.id] = message.cpf; 
                     console.log('Mensagem:', message.msg); 
                 }
-                connection.execute('INSERT INTO `sapatariapf`.`Mensagem`(`TXT_Mensagem`,`Funcionario_Pessoa_cpf_Pessoa`)VALUES(?,?);',[message.msg,message.cpf])
+                connection.execute('INSERT INTO `sapatariapf`.`Mensagem`(`TXT_Mensagem`,`Funcionario_Pessoa_cpf_Pessoa`)VALUES(?,?);',[message.msg,message.cpf],(err,result)=>{
+                    console.log(result)
+                    console.log(err)
+                })
                 io.emit('message', JSON.stringify({
                     msg: message.msg,
                     nome: result[0].Nome_Pessoa,
