@@ -33,7 +33,7 @@ const users = {};
 io.on('connection', (socket) => {
     console.log('Usuário conectado:', socket.id);
     socket.on('connect', () => {
-        console.log('Conectado ao servidor');
+        console.log('Conectado ao servidor'); 
     });
  
     socket.on('connect_error', (err) => {
