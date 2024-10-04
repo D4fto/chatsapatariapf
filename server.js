@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
     socket.on('connect', () => {
         console.log('Conectado ao servidor');
     });
-
+ 
     socket.on('connect_error', (err) => {
         console.log('Erro de conexão:', err);
     });
