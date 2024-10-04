@@ -26,7 +26,7 @@ const io = new Server(server, {
         origin: "https://sapatariapf.onrender.com", 
         methods: ["GET", "POST"]
     }
-}); 
+});  
 
 const users = {}; 
 
