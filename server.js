@@ -6,7 +6,7 @@ const {connection} = require('./mysql/connection')
 
 const app = express();
 const server = http.createServer(app);
-
+ 
 connection.connect((err) => {
     if (err) {
         console.error('Erro ao conectar ao banco de dados:', err);
