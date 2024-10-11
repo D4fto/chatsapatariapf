@@ -20,7 +20,7 @@ app.use(cors({
     methods: ['GET', 'POST'], 
     allowedHeaders: ['Content-Type']
 }));
-
+ 
 const io = new Server(server, {
     cors: {
         origin: "https://sapatariapf.onrender.com", 
